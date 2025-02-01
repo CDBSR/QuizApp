@@ -1,4 +1,4 @@
-import { useContext, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { AuthContext } from "../context/AuthContextProvider";
 import { baseurl } from "./Baseurl";
 import '../styles/Result.css';
@@ -9,6 +9,10 @@ export const Result = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
     const {userId} = useContext(AuthContext);
+
+    useEffect(() => {
+        fetchResult();
+    }, [userId]);
 
     const fetchResult = async () => {
         try {
